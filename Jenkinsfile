@@ -15,11 +15,14 @@ node {
 		}
 	}
 
-	/* stage('quality analysis') {
+
+	stage('quality analysis') {
 		withSonarQubeEnv('Sonar') {
-			sh "./mvnw sonar:sonar"
+		  withMaven(maven: 'maven') {
+			sh "mvn sonar:sonar"
+		   }
 		}
-	} */
+	}
 
 	stage('Package') {
 		withMaven(maven: 'maven') {
